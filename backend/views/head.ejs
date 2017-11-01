@@ -1,0 +1,44 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img alt="Brand" src="/images/icon.png"></a>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#" class="text-right">欢迎 <%= username%></a></li>
+                <li class="dropdown"><a href="/logout" class="dropdown-toggle text-right">退出</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="sidebar-menu">
+        <a href="#userMeun" class="nav-header menu-first collapsed a1" data-toggle="collapse">商品管理&nbsp;<i class="caret"></i></a>
+        <ul id="userMeun" class="list-unstyled collapse menu-second">
+            <li><a href="/">商品列表</a></li>
+            <li><a href="/article">增加商品</a></li>
+        </ul>
+        <a href="#articleMenu" class="nav-header menu-first collapsed a2" data-toggle="collapse">交易管理&nbsp;<i class="caret"></i></a>
+        <ul id="articleMenu" class="list-unstyled collapse menu-second">
+            <li><a href="#">交易量</a></li>
+            <li><a href="#">交易详情</a></li>
+        </ul>
+        <a href="#" class="nav-header menu-first collapsed">商品</a>
+        <a href="#" class="nav-header menu-first collapsed">商品</a>
+        <a href="#" class="nav-header menu-first collapsed">商品</a>
+        <a href="#" class="nav-header menu-first collapsed">商品</a>
+        <a href="#" class="nav-header menu-first collapsed">商品</a>
+    </div>
+</nav>
+<script>
+    $("#userMeun li a").click(function() {
+        $(this).addClass("active").parent().siblings().children("a").removeClass("active");
+    });
+    $("#articleMenu li a").click(function() {
+        $(this).addClass("active").parent().siblings().children("a").removeClass("active");
+    });
+    $(".a1").click(function() {
+        $("#userMeun").slideToggle("normal");
+        $("#articleMenu").slideUp("fast");
+    });
+    $(".a2").click(function() {
+        $("#articleMenu").slideToggle("normal");
+        $("#userMeun").slideUp("fast");
+    })
+</script>

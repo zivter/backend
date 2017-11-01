@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <script type="text/javascript" src="/jquery/jquery-3.2.1.min.js"></script>
+    <link rel='stylesheet' href='/bootstrap/css/bootstrap.css' />
+    <!-- <script type="text/javascript" src="/bootstrap/js/bootstrap.js"></script> -->
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+</head>
+
+<body>
+    <%- include("./head.ejs")%>
+        <div id="main">
+            <ol class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li>
+                    <%= root%>
+                </li>
+            </ol>
+            <% if(!fix){ %>
+                <form method="get" action="/article/submit">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">商品名称</label>
+                        <input type="text" name="tittle" class="form-control" id="exampleInputEmail1" placeholder="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">商品简介</label>
+                        <textarea class="form-control" name="main" rows="5"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputFile">商品照片</label>
+                        <input type="file" name="path" id="exampleInputFile">
+                        <!--         <img src="..." alt="..." class="img-thumbnail"> -->
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-xs-2">
+                            <label for="exampleInputAmout">商品数量</label>
+                            <input type="text" class="form-control" name="amout">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-info"> &emsp;提交&emsp; </button>
+                </form>
+                <% }else{ %>
+                    <form method="get" action="/article/fix">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">商品名称</label>
+                            <input type="text" name="tittle" class="form-control" id="exampleInputEmail1" value="<%= result[0].tittle %>">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">商品简介</label>
+                            <textarea class="form-control" name="main" rows="5"><%= result[0].main %></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputFile">商品照片</label>
+                            <input type="file" name="path1" id="exampleInputFile">
+                            <img src="/images/<%= result[0].path %>" class="img-thumbnail pic1">
+                        </div>
+                        <input type="hidden" name="path" class="pic2" value="<%= result[0].path %>">
+                        <input type="hidden" name="id" value="<%= result[0]._id %>">
+                        <button type="submit" class="btn btn-info"> &emsp;更新&emsp; </button>
+                    </form>
+                    <% } %>
+        </div>
+
+</body>
+<script>
+    var filep = $("#exampleInputFile");
+    $("#exampleInputFile").on("change", function() {
+        var str = filep.val().substring(12);
+        console.log(str);
+        $(".pic1").attr({
+            src: "/images/" + str
+        });
+        $(".pic2").attr({
+            value: str
+        })
+    })
+</script>
+
+</html>
